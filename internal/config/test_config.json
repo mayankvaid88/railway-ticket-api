@@ -1,0 +1,9 @@
+{
+  "sections":[
+    {
+      "name": "A",
+      "numberOfSeats": 10
+    }
+  ],
+  "ticket_cost": 20
+}

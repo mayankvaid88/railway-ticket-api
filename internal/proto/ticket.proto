@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "validate/validate.proto";
+
+package proto;
+
+option go_package = "internal/proto;proto";
+
+service TicketService {
+    rpc BookTicket (BookTicketRequest) returns (BookTicketResponse);
+		rpc GetTicket (GetTicketRequest) returns (BookTicketResponse);
+		rpc GetSeats (GetSeatsRequest) returns (GetSeatsResponse);
+		rpc CancelTicket (CancelTicketRequest) returns (google.protobuf.Empty);
+}
+
+message BookTicketRequest {
+    string name = 1 [(validate.rules).string.min_len = 1];
+    string from = 2 [(validate.rules).string.min_len = 1];
+    string to = 3 [(validate.rules).string.min_len = 1];
+		string email_address = 4 [(validate.rules).string.min_len = 1];
+}
+
+message BookTicketResponse {
+	string 											Id = 1;
+	string											From 	= 2;
+	string	 										To = 3;
+	float												Price = 4;
+	Seat 												seat = 5;
+}
+
+message Seat{
+	int32 		Number=1;
+	string 	Section=2;
+}
+
+message GetTicketRequest {
+		string email_address = 1 [(validate.rules).string.min_len = 1];
+}
+
+message CancelTicketRequest {
+		string email_address = 1 [(validate.rules).string.min_len = 1];
+}
+
+message GetSeatsRequest {
+		string section = 1 [(validate.rules).string.min_len = 1];
+}
+
+message GetSeatsResponse {
+	repeated Seat seats = 1;
+}

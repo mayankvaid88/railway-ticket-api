@@ -1,0 +1,12 @@
+{
+  "sections":[
+    {
+      "name": "Economy",
+      "numberOfSeats": 10
+    },{
+      "name": "AC",
+      "numberOfSeats": 20
+    }
+  ],
+  "ticket_cost": 20
+}
